@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav>
         <div>
-            <img src="/images/logo.svg" alt="logo" srcset="" />
+            <img src="/images/logo.svg" alt="logo" srcSet="" />
             <p className="font-bold">Rifaz's Macfolio</p>
 
             <ul>
