@@ -37,7 +37,7 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none max-sm:hidden;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -67,15 +67,7 @@ body {
   }
 
   #welcome {
-    @apply text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10;
-
-    .small-screen {
-      @apply sm:hidden m-7 bg-red-300/20 backdrop-blur-lg p-3 rounded-md absolute top-10;
-
-      p {
-        @apply flex-1 text-[16px] text-center font-roboto text-gray-400;
-      }
-    }
+    @apply text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:hidden;
   }
 
   #dock {
@@ -90,7 +82,7 @@ body {
     }
 
     .dock-icon {
-      @apply size-10 3xl:size-16 cursor-pointer;
+      @apply size-12 3xl:size-18 cursor-pointer;
 
       img {
         @apply object-cover object-center;
@@ -297,7 +289,13 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    max-height: 80vh;
+
+    .resume-viewer {
+      @apply overflow-y-auto px-6 pb-6;
+      max-height: calc(80vh - 56px);
+    }
 
     #window-header {
       h2 {
@@ -392,5 +390,470 @@ body {
         }
       }
     }
+  }
+}
+
+/* ============================================================
+   MOBILE  (< 640px)  — iOS-style home screen + full-screen apps
+   ============================================================ */
+
+/* Home screen is desktop-hidden by default */
+#mobile-home {
+  display: none;
+}
+
+@media (max-width: 639.98px) {
+  /* ---------- Home screen ---------- */
+  #mobile-home {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    padding: 1.5rem 1.25rem calc(env(safe-area-inset-bottom) + 1.25rem);
+    user-select: none;
+  }
+
+  #mobile-home .home-apps {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  #mobile-home .home-apps button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    width: 4.25rem;
+    cursor: pointer;
+  }
+
+  #mobile-home .home-apps img {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+
+  #mobile-home .home-apps span {
+    font-size: 0.7rem;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+
+  #mobile-home .home-welcome {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #e5e7eb;
+  }
+
+  #mobile-home .home-welcome p {
+    font-family: var(--font-georama);
+    font-weight: 200;
+    font-size: 1.15rem;
+    color: rgba(229, 231, 235, 0.85);
+    margin-bottom: 0.75rem;
+  }
+
+  #mobile-home .home-welcome h1 {
+    font-family: var(--font-georama);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 4rem;
+    line-height: 1;
+    color: #fff;
+  }
+
+  #mobile-home .mobile-dock {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 1.75rem;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  #mobile-home .mobile-dock button {
+    cursor: pointer;
+  }
+
+  #mobile-home .mobile-dock img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.9rem;
+    object-fit: cover;
+  }
+
+  /* ---------- Full-screen app windows ---------- */
+  #finder,
+  #contact,
+  #terminal,
+  #safari,
+  #resume,
+  #photos,
+  #txtfile,
+  #imgfile {
+    position: fixed !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100dvh !important;
+    margin: 0 !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    background: #1c1c1e !important;
+    color: #fff;
+    overflow-y: auto;
+    box-shadow: none !important;
+  }
+
+  /* Desktop window chrome is replaced by the mobile top bar */
+  #window-header {
+    display: none !important;
+  }
+
+  /* ---------- Mobile top bar ---------- */
+  .mobile-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    background: #1c1c1e;
+  }
+
+  .mobile-topbar .back {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    color: #0a84ff;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  .mobile-topbar .title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60vw;
+  }
+
+  /* ---------- Finder (file browser) ---------- */
+  .finder-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.15rem;
+    padding: 0.6rem 1rem;
+    background: #2c2c2e;
+    font-size: 0.85rem;
+  }
+
+  .finder-breadcrumb .crumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    color: #5e9bff;
+  }
+
+  .finder-breadcrumb .crumb button {
+    color: #5e9bff;
+    cursor: pointer;
+  }
+
+  .mobile-finder-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .mobile-finder-grid li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+
+  .mobile-finder-grid img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+  }
+
+  .mobile-finder-grid p {
+    font-size: 0.78rem;
+    text-align: center;
+    color: #fff;
+    line-height: 1.15;
+  }
+
+  /* ---------- Terminal ---------- */
+  .mobile-terminal {
+    font-family: var(--font-roboto);
+    padding: 1.25rem 1rem 2rem;
+    color: #fff;
+    font-size: 0.95rem;
+  }
+
+  .mobile-terminal .prompt {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-terminal .prompt span {
+    font-weight: 700;
+  }
+
+  .mobile-terminal .cat {
+    margin-bottom: 1.35rem;
+  }
+
+  .mobile-terminal .cat-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #34c759;
+    font-weight: 700;
+  }
+
+  .mobile-terminal ul {
+    padding-left: 1.75rem;
+    margin-top: 0.3rem;
+  }
+
+  .mobile-terminal li {
+    color: #e5e7eb;
+    line-height: 1.6;
+  }
+
+  /* ---------- Safari (GitHub repositories) ---------- */
+  #safari {
+    background: #f6f8fa !important;
+    color: #1f2328;
+  }
+
+  .mobile-github {
+    padding: 1.25rem 1rem 2rem;
+    color: #1f2328;
+  }
+
+  .mobile-github .gh-head {
+    margin-bottom: 1.25rem;
+  }
+
+  .mobile-github .gh-head .eyebrow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #6b7280;
+  }
+
+  .mobile-github .gh-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-top: 0.15rem;
+  }
+
+  .mobile-github .gh-head .sub {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-top: 0.25rem;
+  }
+
+  .mobile-github .gh-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .mobile-github .gh-card {
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .mobile-github .gh-card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .mobile-github .gh-icon {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.85rem;
+    background: #f1f5f9;
+    color: #334155;
+  }
+
+  .mobile-github .gh-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .mobile-github .gh-desc {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin-top: 0.2rem;
+    line-height: 1.4;
+  }
+
+  .mobile-github .gh-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+  }
+
+  .mobile-github .gh-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: #475569;
+    background: #f1f5f9;
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+  }
+
+  .mobile-github .gh-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+  }
+
+  .mobile-github .gh-tags span {
+    font-size: 0.78rem;
+    color: #64748b;
+    background: #f1f5f9;
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+  }
+
+  /* ---------- Photos ---------- */
+  .mobile-photos {
+    padding: 1rem;
+  }
+
+  .mobile-photos ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .mobile-photos li {
+    cursor: pointer;
+  }
+
+  .mobile-photos img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.85rem;
+  }
+
+  /* ---------- Contact ---------- */
+  #contact .contact-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1.25rem 2rem;
+  }
+
+  #contact img.rounded-full {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+  }
+
+  #contact h3 {
+    color: #fff;
+  }
+
+  #contact .contact-body > p {
+    color: #d1d5db;
+    max-width: 22rem;
+  }
+
+  #contact .contact-email {
+    display: none;
+  }
+
+  #contact ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.85rem;
+  }
+
+  #contact ul li {
+    width: 100% !important;
+    padding: 1rem 1.25rem;
+  }
+
+  #contact ul li a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  #contact ul li p {
+    text-align: left;
+  }
+
+  /* ---------- Text & Image files (dark theme) ---------- */
+  #txtfile .bg-white {
+    background: transparent !important;
+    color: #e5e7eb !important;
+  }
+
+  #txtfile h3 {
+    color: #fff !important;
+  }
+
+  #imgfile .bg-white {
+    background: #1c1c1e !important;
+  }
+
+  /* ---------- Resume ---------- */
+  #resume .resume-viewer {
+    max-height: none;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #resume .resume-viewer canvas {
+    max-width: 100% !important;
+    height: auto !important;
   }
 }

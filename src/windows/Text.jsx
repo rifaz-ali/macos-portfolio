@@ -40,6 +40,8 @@ const Text = () => {
   );
 };
 
-const TextWindow = WindowWrapper(Text, "txtfile");
+const TextWindow = WindowWrapper(Text, "txtfile", {
+  mobileTitle: (data) => data?.name ?? "File",
+});
 
 export default TextWindow;

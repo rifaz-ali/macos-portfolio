@@ -2,12 +2,14 @@ import React, { useRef } from 'react'
 import { Tooltip } from "react-tooltip"
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
-import { dockApps } from '../constants';
+import { dockApps, locations } from '../constants';
 import useWindowStore from '#store/window';
+import useLocationStore from '#store/location';
 
 const Dock = () => {
   const dockRef = useRef(null);
-  const { openWindow, closeWindow, windows } = useWindowStore()
+  const { openWindow, closeWindow, windows } = useWindowStore();
+  const { setActiveLocation } = useLocationStore();
 
   useGSAP(() => {
     const dock = dockRef.current;
@@ -57,7 +59,13 @@ const Dock = () => {
 
 
   const toggleApp = (app) => {
-    //Open Window Logic For Each Clicking of Buttons
+    // Open Finder Trash when trash button is clicked
+    if (app.id === 'trash') {
+      setActiveLocation(locations.trash);
+      openWindow('finder');
+      return;
+    }
+
     if(!app.canOpen) return;
 
     const window = windows[app.id];
@@ -67,7 +75,6 @@ const Dock = () => {
     }else{
       openWindow(app.id)
     }
-
   }
 
   return <section id="dock">

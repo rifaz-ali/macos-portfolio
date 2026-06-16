@@ -1,9 +1,36 @@
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import { techStack } from "#constants";
-import { Check, Flag } from "lucide-react";
+import { Check, Flag, ChevronRight } from "lucide-react";
 import { WindowControls } from "#components";
 
-const Terminal = () => {
+const Terminal = ({ isMobile }) => {
+  if (isMobile) {
+    return (
+      <div className="mobile-terminal">
+        <p className="prompt">
+          <span>@rifaz % </span>show tech stack
+        </p>
+
+        {techStack.map(({ category, items }) => (
+          <div key={category} className="cat">
+            <p className="cat-title">
+              <ChevronRight size={16} />
+              {category}
+            </p>
+            <ul>
+              {items.map((item, i) => (
+                <li key={i}>
+                  - {item}
+                  {i < items.length - 1 ? "," : ""}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <>
       <div id="window-header">
@@ -52,6 +79,8 @@ const Terminal = () => {
   );
 };
 
-const TerminalWindow = WindowWrapper(Terminal, "terminal");
+const TerminalWindow = WindowWrapper(Terminal, "terminal", {
+  mobileTitle: "Terminal",
+});
 
 export default TerminalWindow;

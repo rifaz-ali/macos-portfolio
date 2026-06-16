@@ -30,6 +30,6 @@ const Image = () => {
   );
 };
 
-const ImageWindow = WindowWrapper(Image, "imgfile");
+const ImageWindow = WindowWrapper(Image, "imgfile", { mobileTitle: "Preview" });
 
 export default ImageWindow;

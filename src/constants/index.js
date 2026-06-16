@@ -44,7 +44,7 @@ const dockApps = [
   },
   {
     id: "safari",
-    name: "Articles", // was "Safari"
+    name: "GitHub",
     icon: "safari.png",
     canOpen: true,
   },
@@ -70,7 +70,7 @@ const dockApps = [
     id: "trash",
     name: "Archive", // was "Trash"
     icon: "trash.png",
-    canOpen: false,
+    canOpen: true,
   },
 ];
 
@@ -249,7 +249,7 @@ const WORK_LOCATION = {
     // ▶ Project 1
     {
       id: 5,
-      name: "LeadifyPro Saas - Fullstack Application",
+      name: "LeadifyPro Saas",
       icon: "/images/folder.png",
       kind: "folder",
       position: "top-10 left-5", // icon position inside Finder
@@ -269,7 +269,6 @@ const WORK_LOCATION = {
             "It is built with Next.js and MySQL, deployed on Render with Aiven as the managed database, and ships automatically every time code is pushed to GitHub.",
           ],
         },
-        ,
         {
           id: 2,
           name: "leadifypro.pixelroot.in",
@@ -293,7 +292,7 @@ const WORK_LOCATION = {
 
     // ▶ Project 2
     {
-      id: 7,
+      id: 6,
       name: "KampusFlow",
       icon: "/images/folder.png",
       kind: "folder",
@@ -324,7 +323,7 @@ const WORK_LOCATION = {
           position: "top-20 left-20",
         },
         {
-          id: 4,
+          id: 3,
           name: "kampusflow.png",
           icon: "/images/image.png",
           kind: "file",
@@ -477,15 +476,6 @@ const TRASH_LOCATION = {
       fileType: "img",
       position: "top-10 left-10",
       imageUrl: "/images/trash-1.png",
-    },
-    {
-      id: 2,
-      name: "trash2.png",
-      icon: "/images/image.png",
-      kind: "file",
-      fileType: "img",
-      position: "top-40 left-80",
-      imageUrl: "/images/trash-2.png",
     },
   ],
 };

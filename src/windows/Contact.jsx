@@ -11,12 +11,12 @@ const Contact = () => {
             <h2>Contact Me</h2>
         </div>
 
-        <div className="p-5 space-y-5">
+        <div className="p-5 space-y-5 contact-body">
             <img src="/images/rifaz.jpg" alt="Adrian" className="w-20 rounded-full" />
 
             <h3>Let's Connect</h3>
             <p>Got an idea? A bug to squash? Or just wanna talk tech? I'm in.</p>
-            <p>alirifaz21@gmail.com</p>
+            <p className="contact-email">alirifaz21@gmail.com</p>
 
             <ul>
                 {socials.map(({ id, bg, link, icon, text }) => (
@@ -33,6 +33,6 @@ const Contact = () => {
   )
 }
 
-const ContactWindow = WindowWrapper(Contact, "contact");
+const ContactWindow = WindowWrapper(Contact, "contact", { mobileTitle: "Contact" });
 
 export default ContactWindow

@@ -4,8 +4,32 @@ import { photosLinks, gallery } from "#constants";
 import { Mail, Search } from "lucide-react";
 import useWindowStore from "#store/window";
 
-const Photos = () => {
+const Photos = ({ isMobile }) => {
   const { openWindow } = useWindowStore();
+
+  const openImage = (id, img) =>
+    openWindow("imgfile", {
+      id,
+      name: "Gallery image",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      imageUrl: img,
+    });
+
+  if (isMobile) {
+    return (
+      <div className="mobile-photos">
+        <ul>
+          {gallery.map(({ id, img }) => (
+            <li key={id} onClick={() => openImage(id, img)}>
+              <img src={img} alt={`Gallery image ${id}`} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -56,6 +80,8 @@ const Photos = () => {
   );
 };
 
-const PhotosWindow = WindowWrapper(Photos, "photos");
+const PhotosWindow = WindowWrapper(Photos, "photos", {
+  mobileTitle: "All Photos",
+});
 
 export default PhotosWindow;

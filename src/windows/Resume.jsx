@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { WindowControls } from "#components";
 import WindowWrapper from "#hoc/WindowWrapper";
 import { Download } from "lucide-react";
@@ -12,6 +13,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const Resume = () => {
+  const [numPages, setNumPages] = useState(null);
+
+  const handleDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
   return (
     <>
       <div id="window-header">
@@ -27,12 +34,24 @@ const Resume = () => {
         </a>
       </div>
 
-      <Document file="files/Sheik_Rifaz_Ali_Resume.pdf">
-        <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
-      </Document>
+      <div className="resume-viewer">
+        <Document
+          file="files/Sheik_Rifaz_Ali_Resume.pdf"
+          onLoadSuccess={handleDocumentLoadSuccess}
+        >
+          {Array.from(new Array(numPages), (el, index) => (
+            <Page
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              renderTextLayer
+              renderAnnotationLayer
+            />
+          ))}
+        </Document>
+      </div>
     </>
   );
 };
 
-const ResumeWindow = WindowWrapper(Resume, "resume");
+const ResumeWindow = WindowWrapper(Resume, "resume", { mobileTitle: "Resume" });
 export default ResumeWindow;
