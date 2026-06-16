@@ -20,7 +20,7 @@ const Navbar = () => {
                 ))}
             </ul>
         </div>
-
+ 
         <div>
             <ul>
                  {navIcons.map(({id, img}) => (
