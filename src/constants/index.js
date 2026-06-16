@@ -101,28 +101,40 @@ const blogPosts = [
 
 const techStack = [
   {
+    category: "Languages",
+    items: ["Python", "JavaScript", "TypeScript", "C++", "SQL"],
+  },
+  {
     category: "Frontend",
-    items: ["React.js", "Next.js", "TypeScript"],
+    items: ["React.js", "Next.js", "HTML5", "CSS3", "Tailwind CSS"],
   },
   {
     category: "Mobile",
     items: ["React Native", "Expo"],
   },
   {
-    category: "Styling",
-    items: ["Tailwind CSS", "Sass", "CSS"],
-  },
-  {
     category: "Backend",
-    items: ["Node.js", "Express", "NestJS", "Hono"],
+    items: ["Node.js", "Express.js", "Django", "PHP", "Strapi CMS"],
   },
   {
     category: "Database",
-    items: ["MongoDB", "PostgreSQL"],
+    items: ["PostgreSQL", "MySQL", "MongoDB"],
   },
   {
-    category: "Dev Tools",
-    items: ["Git", "GitHub", "Docker"],
+    category: "DevOps & Cloud",
+    items: ["Docker", "AWS Lambda", "Nginx", "VPS", "CI/CD", "GitHub"],
+  },
+  {
+    category: "AI & Automation",
+    items: ["Microsoft Copilot Studio", "Make.com", "N8N", "OpenCV", "GPT API", "V0.dev"],
+  },
+  {
+    category: "SEO Tools",
+    items: ["SEMrush", "Google Search Console", "Ubersuggest", "Google Analytics"],
+  },
+  {
+    category: "Other",
+    items: ["WordPress", "Jira", "Agile", "SharePoint", "REST APIs"],
   },
 ];
 

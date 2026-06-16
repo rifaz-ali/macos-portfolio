@@ -46,7 +46,7 @@ const Finder = () => {
           </div>
 
           <div>
-            <h3>Work</h3>
+            <h3>My Projects</h3>
             <ul>
               {locations.work.children.map((item) => (
                 <li

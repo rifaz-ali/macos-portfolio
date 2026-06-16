@@ -42,8 +42,11 @@ const WindowWrapper = (Component, windowKey) => {
       el.style.display = isOpen ? "block" : "none";
     }, [isOpen]);
 
+    const wrapperStyle = { zIndex };
+    if (windowKey === 'terminal') wrapperStyle.width = '800px';
+
     return (
-      <section id={windowKey} ref={ref} style={{ zIndex }} className="absolute">
+      <section id={windowKey} ref={ref} style={wrapperStyle} className="absolute">
         <Component {...props} />
       </section>
     );
