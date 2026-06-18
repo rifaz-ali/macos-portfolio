@@ -1,5 +1,6 @@
 import { dockApps } from "#constants";
 import useWindowStore from "#store/window";
+import { MobileStatusBar } from "#components";
 
 // Apps that live on the home screen (the 2 that don't fit in the dock).
 const HOME_APP_IDS = ["terminal", "trash"];
@@ -29,6 +30,8 @@ const MobileHome = () => {
 
   return (
     <section id="mobile-home">
+      <MobileStatusBar />
+
       <div className="home-apps">
         {homeApps.map((app) => (
           <button key={app.id} type="button" onClick={() => launch(app)}>
